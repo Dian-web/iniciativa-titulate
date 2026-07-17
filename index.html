@@ -411,19 +411,123 @@
         .timeline-step h4 { font-size: 1.3rem; margin-bottom: 10px; color: var(--text-main); }
         .timeline-step p { color: var(--text-sec); font-size: 0.95rem; }
 
-        /* TICKER DE CARRERAS */
-        .ticker {
-            background: var(--yellow); color: var(--bg-darker);
-            padding: 15px 0; overflow: hidden; white-space: nowrap;
-            font-weight: 700; font-size: 1.1rem;
+        /* CARRUSEL 3D DE CARRERAS */
+        .careers-carousel-section {
+            padding: 80px 5% 120px;
+            text-align: center;
+            overflow: hidden;
+            background: radial-gradient(circle at center, rgba(0, 70, 173, 0.05), transparent);
         }
-        .ticker-content { display: inline-block; animation: scroll 30s linear infinite; }
-        .ticker-content span { margin: 0 30px; }
-        .ticker-content span::before { content: '★ '; color: var(--blue); }
-
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+        .carousel-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+        .carousel-header p {
+            color: var(--text-sec);
+            margin-bottom: 60px;
+        }
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            height: 420px;
+            perspective: 1200px;
+        }
+        .carousel-track {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+        }
+        .carousel-item {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 280px;
+            height: 360px;
+            margin-top: -180px; 
+            margin-left: -140px; 
+            transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border-radius: 20px;
+            overflow: hidden;
+            background: var(--bg-darker);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            cursor: pointer;
+        }
+        .carousel-item-img {
+            width: 100%;
+            height: 65%;
+            object-fit: cover;
+            pointer-events: none;
+        }
+        .carousel-item-content {
+            padding: 20px;
+            text-align: center;
+            background: rgba(30, 34, 42, 0.95);
+            height: 35%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .carousel-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: var(--text-main);
+            font-weight: 700;
+        }
+        .carousel-item p {
+            font-size: 0.85rem;
+            color: var(--yellow);
+            font-weight: 600;
+        }
+        .carousel-item.active {
+            box-shadow: 0 30px 60px rgba(0, 70, 173, 0.4);
+        }
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-top: 50px;
+        }
+        .carousel-btn {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text-main);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .carousel-btn:hover {
+            background: var(--blue);
+            border-color: var(--blue);
+            transform: scale(1.1);
+        }
+        .carousel-dots {
+            display: flex;
+            gap: 10px;
+        }
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .carousel-dot.active {
+            background: var(--blue);
+            width: 30px;
+            border-radius: 5px;
         }
 
         /* COMPARATIVA SLEEK */
@@ -462,6 +566,14 @@
             .wallet-widget { bottom: 10px; right: 10px; padding: 10px 15px; }
             .wallet-value { font-size: 1.2rem; }
             .nav-island { width: 95%; padding: 10px 15px; }
+            
+            .careers-carousel-section { padding: 60px 5% 80px; }
+            .carousel-header h2 { font-size: 2rem; }
+            .carousel-container { height: 380px; perspective: 800px; }
+            .carousel-item { width: 220px; height: 290px; margin-top: -145px; margin-left: -110px; }
+            .carousel-item h4 { font-size: 1rem; }
+            .carousel-item p { font-size: 0.75rem; }
+            .carousel-controls { margin-top: 30px; }
         }
     </style>
 </head>
@@ -514,8 +626,8 @@
     <!-- BENEFICIOS EN GRID 3 COLUMNAS -->
     <section class="container benefits-section">
         <div class="reveal">
-            <h2 style="font-size: 2.5rem; margin-bottom: 20px; color: var(--text-main);">El "Combo" que encontrarás entrando directo</h2>
-            <p style="color: var(--text-sec); max-width: 700px; margin: 0 auto;">Al inscribirte a través de la Iniciativa Titúlate, desbloqueas dos beneficios masivos que trabajan en conjunto.</p>
+            <h2 style="font-size: 2.5rem; margin-bottom: 20px; color: var(--text-main);">Un respaldo financiero que solo consigues aquí.</h2>
+            <p style="color: var(--text-sec); max-width: 700px; margin: 0 auto;">Al inscribirte a través de la Iniciativa Titúlate, te quitas el estrés financiero de encima con beneficios masivos que trabajan en conjunto.</p>
         </div>
         
         <div class="benefits-grid">
@@ -541,7 +653,7 @@
                 </div>
                 <h3>Plataforma Transparente</h3>
                 <p>Mira tu progreso académico y el crecimiento de tu bono en tiempo real dentro de la plataforma.</p>
-                <span class="source-badge">📊 Trazabilidad total de tu inversión.</span>
+                <span class="source-badge">📊 Cuentas claras y control total de tu dinero.</span>
             </div>
         </div>
     </section>
@@ -549,12 +661,12 @@
     <!-- PLATAFORMA TRANSPARENTE CON MOCKUP -->
     <section class="container platform-section">
         <div class="platform-text reveal">
-            <span class="tag">Trazabilidad Real</span>
-            <h2>Tu avance, siempre visible.</h2>
-            <p>Cuando entras a <strong style="color: var(--text-main);">la plataforma de seguimiento</strong>, no solo ves tus calificaciones. He desarrollado un sistema donde verás una <strong style="color: var(--text-main);">Barra de Progreso de tu Bono Cashback</strong>. Verás cómo tu bono de titulación se va consolidando semestre con semestre. Control y motivación pura.</p>
+            <span class="tag">Cuentas Claras</span>
+            <h2>Tu avance, siempre a la vista.</h2>
+            <p>He desarrollado un sistema donde verás una <strong style="color: var(--text-main);">Barra de Progreso de tu Bono Cashback</strong>. Verás cómo tu bono de titulación se va consolidando mes con mes. Control y motivación pura.</p>
         </div>
         <div class="mockup-frame reveal-scale">
-            <img src="mockup3.png" alt="Panel de control Iniciativa Titúlate" class="mockup-img">
+            <img src="mockup4.png" alt="Panel de control Iniciativa Titúlate" class="mockup-img">
         </div>
     </section>
 
@@ -587,13 +699,21 @@
         <p class="reveal" style="margin-top: 60px; font-size: 1.5rem; font-weight: bold; color: #4ADE80;">"Si tú terminas, yo gano. Si tú abandonas, yo pierdo."</p>
     </section>
 
-    <!-- TICKER DE CARRERAS -->
-    <div class="ticker">
-        <div class="ticker-content">
-            <span>Derecho (RVOE 20211119)</span><span>Contaduría (RVOE 20220137)</span><span>Ingeniería Industrial (RVOE 20220139)</span><span>Criminología (RVOE 20232010)</span><span>Pedagogía (RVOE 20220138)</span><span>Mercadotecnia (RVOE 20220135)</span><span>Negocios Internacionales (RVOE 20220136)</span><span>Estilismo (RVOE 20231881)</span><span>Educación Deportiva (RVOE 20211118)</span><span>Ingeniería en Electrónica (RVOE 202309000)</span><span>Políticas Públicas (RVOE 20211117)</span>
-            <span>Derecho (RVOE 20211119)</span><span>Contaduría (RVOE 20220137)</span><span>Ingeniería Industrial (RVOE 20220139)</span><span>Criminología (RVOE 20232010)</span><span>Pedagogía (RVOE 20220138)</span><span>Mercadotecnia (RVOE 20220135)</span><span>Negocios Internacionales (RVOE 20220136)</span><span>Estilismo (RVOE 20231881)</span><span>Educación Deportiva (RVOE 20211118)</span><span>Ingeniería en Electrónica (RVOE 202309000)</span><span>Políticas Públicas (RVOE 20211117)</span>
+    <!-- CARRUSEL 3D DE CARRERAS -->
+    <section class="careers-carousel-section">
+        <div class="carousel-header reveal">
+            <h2>Explora tu futuro profesional</h2>
+            <p>11 programas con validez oficial (RVOE SEP). Desliza o usa las flechas para ver tu carrera.</p>
         </div>
-    </div>
+        <div class="carousel-container" id="carouselContainer">
+            <div class="carousel-track" id="carouselTrack"></div>
+        </div>
+        <div class="carousel-controls">
+            <button class="carousel-btn" id="prevBtn">←</button>
+            <div class="carousel-dots" id="carouselDots"></div>
+            <button class="carousel-btn" id="nextBtn">→</button>
+        </div>
+    </section>
 
     <!-- COMPARATIVA -->
     <section class="container">
@@ -626,8 +746,8 @@
     <!-- CTA FINAL -->
     <section class="container final-cta">
         <div class="reveal-scale">
-            <h2>Mi capacidad de inversión tiene un límite.</h2>
-            <p>El Bono de Titulación sale de mis propias ganancias. Solo puedo comprometer este fondo con un número limitado de alumnos por generación. Una vez que se llenan los cupos, el bono se cierra.</p>
+            <h2>Hablemos de frente: mi capacidad de inversión tiene un límite.</h2>
+            <p>El Bono de Titulación sale de mi propio bolsillo. Solo puedo comprometer este fondo con un número limitado de alumnos por generación. Una vez que se llenan los cupos, el bono se cierra.</p>
             <a href="https://wa.me/525546979272?text=Hola%2C%20soy%20[Nombre]%20de%20[Ciudad]%2C%20quiero%20apartar%20mi%20cupo%20para%20[Carrera]" class="btn-cta">Quiero asegurar mi cupo y mi bono por WhatsApp →</a>
         </div>
     </section>
@@ -670,6 +790,132 @@
             document.querySelectorAll('.reveal, .reveal-scale').forEach(el => {
                 observer.observe(el);
             });
+
+            // 3. Carrusel 3D de Carreras
+            const careers = [
+                { name: "Derecho", rvoe: "RVOE 20211119", img: "https://images.unsplash.com/photo-1505664194779-8beaceb93744?w=400&h=300&fit=crop" },
+                { name: "Contaduría", rvoe: "RVOE 20220137", img: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=300&fit=crop" },
+                { name: "Ingeniería Industrial", rvoe: "RVOE 20220139", img: "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=400&h=300&fit=crop" },
+                { name: "Criminología", rvoe: "RVOE 20232010", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop" },
+                { name: "Pedagogía", rvoe: "RVOE 20220138", img: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=300&fit=crop" },
+                { name: "Mercadotecnia", rvoe: "RVOE 20220135", img: "https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=400&h=300&fit=crop" },
+                { name: "Negocios Internacionales", rvoe: "RVOE 20220136", img: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&h=300&fit=crop" },
+                { name: "Estilismo", rvoe: "RVOE 20231881", img: "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=400&h=300&fit=crop" },
+                { name: "Educación Deportiva", rvoe: "RVOE 20211118", img: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=400&h=300&fit=crop" },
+                { name: "Ingeniería en Electrónica", rvoe: "RVOE 202309000", img: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=300&fit=crop" },
+                { name: "Políticas Públicas", rvoe: "RVOE 20211117", img: "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=400&h=300&fit=crop" }
+            ];
+
+            let currentSlide = 0;
+            const track = document.getElementById('carouselTrack');
+            const dotsContainer = document.getElementById('carouselDots');
+
+            function buildCarousel() {
+                track.innerHTML = '';
+                dotsContainer.innerHTML = '';
+                
+                careers.forEach((career, i) => {
+                    const item = document.createElement('div');
+                    item.className = 'carousel-item';
+                    item.innerHTML = `
+                        <img src="${career.img}" alt="${career.name}" class="carousel-item-img" loading="lazy">
+                        <div class="carousel-item-content">
+                            <h4>${career.name}</h4>
+                            <p>${career.rvoe}</p>
+                        </div>
+                    `;
+                    item.addEventListener('click', () => {
+                        if (i !== currentSlide) {
+                            currentSlide = i;
+                            updateCarousel();
+                        }
+                    });
+                    track.appendChild(item);
+                    
+                    const dot = document.createElement('div');
+                    dot.className = 'carousel-dot';
+                    dot.addEventListener('click', () => {
+                        currentSlide = i;
+                        updateCarousel();
+                    });
+                    dotsContainer.appendChild(dot);
+                });
+                
+                updateCarousel();
+            }
+
+            function updateCarousel() {
+                const items = document.querySelectorAll('.carousel-item');
+                const dots = document.querySelectorAll('.carousel-dot');
+                const total = items.length;
+                const half = Math.floor(total / 2);
+                
+                items.forEach((item, i) => {
+                    let offset = i - currentSlide;
+                    if (offset > half) offset -= total;
+                    if (offset < -half) offset += total;
+                    
+                    const absOffset = Math.abs(offset);
+                    const maxVisible = 4;
+                    
+                    if (absOffset > maxVisible) {
+                        item.style.opacity = 0;
+                        item.style.transform = `translateX(${offset * 150}px) scale(0.5)`;
+                        item.style.pointerEvents = 'none';
+                        return;
+                    }
+                    
+                    const translateX = offset * 150;
+                    const rotateY = offset * -25;
+                    const scale = 1 - (absOffset * 0.15);
+                    const zIndex = maxVisible - absOffset + 1;
+                    const opacity = 1 - (absOffset * 0.25);
+                    
+                    item.style.transform = `translateX(${translateX}px) translateZ(${-absOffset * 100}px) rotateY(${rotateY}deg) scale(${scale})`;
+                    item.style.zIndex = zIndex;
+                    item.style.opacity = opacity;
+                    item.style.pointerEvents = 'auto';
+                    
+                    if (i === currentSlide) {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
+                
+                dots.forEach((dot, i) => {
+                    if (i === currentSlide) dot.classList.add('active');
+                    else dot.classList.remove('active');
+                });
+            }
+
+            document.getElementById('prevBtn').addEventListener('click', () => {
+                currentSlide = (currentSlide - 1 + careers.length) % careers.length;
+                updateCarousel();
+            });
+            document.getElementById('nextBtn').addEventListener('click', () => {
+                currentSlide = (currentSlide + 1) % careers.length;
+                updateCarousel();
+            });
+
+            // Auto-play
+            let carouselInterval = setInterval(() => {
+                currentSlide = (currentSlide + 1) % careers.length;
+                updateCarousel();
+            }, 4000);
+
+            // Pause on hover
+            document.getElementById('carouselContainer').addEventListener('mouseenter', () => {
+                clearInterval(carouselInterval);
+            });
+            document.getElementById('carouselContainer').addEventListener('mouseleave', () => {
+                carouselInterval = setInterval(() => {
+                    currentSlide = (currentSlide + 1) % careers.length;
+                    updateCarousel();
+                }, 4000);
+            });
+
+            buildCarousel();
         });
     </script>
 
